@@ -21,23 +21,17 @@ import java.util.Optional;
 @RequestMapping("/api/lancamentos")
 @RequiredArgsConstructor
 public class LancamentoController {
-    //@Autowired
     private final LancamentoService lancamentoService;
 
-    //@Autowired
     private final UsuarioService usuarioService;
 
-//    public LancamentoController(LancamentoService lancamentoService, UsuarioService usuarioService){
-//        this.lancamentoService = lancamentoService;
-//        this.usuarioService = usuarioService;
-//    }
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody LancamentoDTO lancamentoDTO){
         try {
             Lancamento lancamento = converter(lancamentoDTO);
             lancamento = lancamentoService.salvar(lancamento);
-            return new ResponseEntity(lancamento, HttpStatus.CREATED); //ResponseEntity.ok()
+            return new ResponseEntity(lancamento, HttpStatus.CREATED);
         } catch (RegraNegocioException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -77,7 +71,6 @@ public class LancamentoController {
 
     @GetMapping
     public ResponseEntity buscar(
-            //@RequestParam java.util.Map<String, String> params;
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "mes", required = false) Integer mes,
             @RequestParam(value = "ano", required = false) Integer ano,

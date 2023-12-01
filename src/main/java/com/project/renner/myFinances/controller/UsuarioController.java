@@ -19,13 +19,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UsuarioController {
 
-   // @Autowired
   private final UsuarioService usuarioService;
   private final LancamentoService lancamentoService;
 
-//    public UsuarioController(UsuarioService usuarioService){
-//        this.usuarioService = usuarioService;
-//    }
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody UsuarioDTO usuarioDTO){
